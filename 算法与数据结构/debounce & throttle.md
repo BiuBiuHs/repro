@@ -7,8 +7,8 @@ var throttle = function(func, wait) {
     var timeout;
     
     return function() {
-        clearTimeout(timeout);
-        if(!timeout) {
+       
+        if(!timeout) {   //存在timer不执行
             timeout = setTimeout(function() {
                 timeout = null;
                 func();
