@@ -4,7 +4,7 @@ export default function compose(...funcs) {
     return arg => arg
   }
   if (funcs.length === 1) {
-    return funcs[0]
+    return funcs[0].apply(this,args)
   }
   /**
    * 核心语句就是这一句reduce，队列中的下一个函数b，已组合的函数a，把b作为参数扔给a，
