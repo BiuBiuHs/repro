@@ -16,11 +16,18 @@ apply 的性能会比call差，因为要对数组参数进行判断和解构
 ```
 Function.prototype.bind=function(obj){
   let self= this;
+   // 获取bind函数从第二个参数到最后一个参数
+    var args = Array.prototype.slice.call(arguments, 1);
+    
   //bind最终返回一个可执行函数 因此 此处返回 一个function
   return function(){
+  
+  // 这个时候的arguments是指bind返回的函数传入的参数
+   var bindArgs = Array.prototype.slice.call(arguments);
+  
       //self就指向 bind 的那个函数 func.bind  self=> func
-      let args=Array.slice.call(argument,1)
-               self.apply(obj,args)
+      let args=Array.prototype.slice.call(argument,1)
+               self.apply(obj,args.concat(bindArgs))
   }
 }
 ```
