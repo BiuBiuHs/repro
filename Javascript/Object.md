@@ -60,6 +60,22 @@ console.log(target.foo3); // undefined，异常之后 assign 方法就退出了�
 console.log(target.baz);  // undefined，第三个源对象更是不会被拷贝到的。
 ```
 
+### Object.assign 注意点 
+    1.拷贝是浅拷贝，对象的属性 还是对象只会复制引用
+    2.遇到同名属性 会替换而不是添加
+    3.可以拷贝数组
+    ```
+    Object.assign([1, 2, 3], [4, 5])
+    // [4, 5, 3]
+    ```
+    上面代码中，Object.assign把数组视为属性名为 0、1、2 的对象，因此源数组的 0 号属性4覆盖了目标数组的 0 号属性1。
+    
+    4.取值函数的处理
+    
+    Object.assign只能进行值的复制，如果要复制的值是一个取值函数，那么将求值后再复制。
+
+
+
 ### Object.create()
 
 创建一个class
